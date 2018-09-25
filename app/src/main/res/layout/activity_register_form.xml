@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".viewcontrollers.Activities.RegisterFormActivity">
+
+    <TextView
+        android:id="@+id/registerTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_text"
+        android:textSize="@dimen/medium_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <EditText
+        android:id="@+id/nameTextInput"
+        android:layout_width="@dimen/big_input_width"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/registerTitleTextView"
+        android:text="@string/name"
+        />
+    <EditText
+        android:id="@+id/lastNameTextInput"
+        android:layout_width="@dimen/big_input_width"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nameTextInput"
+        android:text="@string/last_name"
+        />
+    <EditText
+        android:id="@+id/emailTextInput"
+        android:inputType="textEmailAddress"
+        android:layout_width="@dimen/big_input_width"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lastNameTextInput"
+        android:text="@string/mail"
+        />
+    <EditText
+        android:id="@+id/UserTextInput"
+
+        android:layout_width="@dimen/big_input_width"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/emailTextInput"
+        android:text="@string/user"
+        />
+    <EditText
+
+        android:id="@+id/PasswordTextInput"
+        android:inputType="textPassword"
+        android:layout_width="@dimen/big_input_width"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/UserTextInput"
+        android:text="@string/user"
+        />
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="@dimen/big_button_width"
+        android:layout_height="@dimen/big_button_height"
+        android:background="@android:color/holo_purple"
+        android:text="@string/register_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+
+
+
+
+
+</android.support.constraint.ConstraintLayout>

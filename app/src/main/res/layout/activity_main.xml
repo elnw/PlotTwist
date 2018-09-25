@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_image_background"
+    tools:context=".viewcontrollers.Activities.MainActivity">
+
+
+    <ImageView
+        android:id="@+id/imageViewIcon"
+        android:layout_width="@dimen/medium_image_width"
+        android:layout_height="@dimen/medium_image_height"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:src="@drawable/ic_mainicon" />
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="@dimen/medium_title"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/imageViewIcon"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/signUpButton"
+        android:text="@string/register_text"
+        android:layout_width="@dimen/big_button_width"
+        android:layout_height="@dimen/big_button_height"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+    <Button
+        android:id="@+id/logInButton"
+        android:text="@string/login_text"
+        android:layout_width="@dimen/big_button_width"
+        android:layout_height="@dimen/big_button_height"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/signUpButton"
+        />
+
+
+</android.support.constraint.ConstraintLayout>
