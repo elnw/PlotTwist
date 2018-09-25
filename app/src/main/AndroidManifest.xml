@@ -29,8 +29,11 @@
             android:parentActivityName=".viewcontrollers.Activities.RegisterActivity" />
         <activity
             android:name=".viewcontrollers.Activities.LoginActivity"
-            android:parentActivityName=".viewcontrollers.Activities.MainActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login"
+            android:parentActivityName=".viewcontrollers.Activities.MainActivity" />
+        <activity
+            android:name=".viewcontrollers.Activities.BeginActivity"
+            android:label="@string/title_activity_begin"></activity>
     </application>
 
 </manifest>
