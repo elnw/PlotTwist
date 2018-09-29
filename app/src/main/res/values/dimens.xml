@@ -7,9 +7,11 @@
     <dimen name="big_button_height">47dp</dimen>
     <dimen name="big_input_width">293dp</dimen>
     <dimen name="big_input_height">32dp</dimen>
+    <dimen name="default_margin">16dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="medium_text_width">190dp</dimen>
 
 
 </resources>

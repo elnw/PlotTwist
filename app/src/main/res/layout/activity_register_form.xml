@@ -23,7 +23,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/registerTitleTextView"
-        android:text="@string/name"
+        android:hint="@string/name"
         />
     <EditText
         android:id="@+id/lastNameTextInput"
@@ -32,7 +32,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nameTextInput"
-        android:text="@string/last_name"
+        android:hint="@string/last_name"
         />
     <EditText
         android:id="@+id/emailTextInput"
@@ -42,8 +42,21 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lastNameTextInput"
-        android:text="@string/mail"
+
+        android:hint="@string/mail"
         />
+
+    <EditText
+        android:id="@+id/sexTextInput"
+
+        android:layout_width="@dimen/big_input_width"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/emailTextInput"
+        android:hint="@string/sex"
+        />
+
     <EditText
         android:id="@+id/UserTextInput"
 
@@ -51,9 +64,21 @@
         android:layout_height="wrap_content"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emailTextInput"
-        android:text="@string/user"
+        app:layout_constraintTop_toBottomOf="@id/sexTextInput"
+        android:hint="@string/user"
         />
+    <EditText
+        android:id="@+id/ageInput"
+        android:layout_width="@dimen/big_input_width"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/UserTextInput"
+        android:hint="@string/age"
+
+        />
+
+
     <EditText
 
         android:id="@+id/PasswordTextInput"
@@ -62,8 +87,19 @@
         android:layout_height="wrap_content"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/UserTextInput"
-        android:text="@string/user"
+        app:layout_constraintTop_toBottomOf="@id/ageInput"
+        android:hint="@string/password"
+        />
+    <EditText
+
+        android:id="@+id/ConfPasswordTextInput"
+        android:inputType="textPassword"
+        android:layout_width="@dimen/big_input_width"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PasswordTextInput"
+        android:hint="@string/conf_password"
         />
 
     <Button

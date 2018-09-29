@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -14,6 +15,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="DATABASE"
+            android:value="plottwist.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="1" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="true" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="pe.edu.upc.plottwist.Models" />
         <activity android:name=".viewcontrollers.Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,12 +41,10 @@
             android:name=".viewcontrollers.Activities.RegisterFormActivity"
             android:parentActivityName=".viewcontrollers.Activities.RegisterActivity" />
         <activity
-            android:name=".viewcontrollers.Activities.LoginActivity"
-            android:label="@string/title_activity_login"
-            android:parentActivityName=".viewcontrollers.Activities.MainActivity" />
-        <activity
             android:name=".viewcontrollers.Activities.BeginActivity"
-            android:label="@string/title_activity_begin"></activity>
+            android:label="@string/title_activity_begin" />
+        <activity android:name=".viewcontrollers.Activities.LoginActivity" />
+        <activity android:name=".viewcontrollers.Activities.StoriesActivity"></activity>
     </application>
 
 </manifest>
