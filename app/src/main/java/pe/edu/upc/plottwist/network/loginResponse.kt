@@ -1,10 +1,17 @@
 package pe.edu.upc.plottwist.network
 
-import pe.edu.upc.plottwist.Models.User
+
+import android.util.Log
+import com.androidnetworking.error.ANError
+import com.androidnetworking.interfaces.OkHttpResponseListener
+import okhttp3.Response
+
 
 class loginResponse {
-    val login: User?=null
-    val access_token: String? = null
-    val client: String? = null
+    var header: String? = ""
+
+
+
+
 
 }

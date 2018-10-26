@@ -1,7 +1,7 @@
 package pe.edu.upc.plottwist.Models
 
 data class Location(
-        val lat: String = "",
-        val lng: String = ""
+        var lat: String = "",
+        var lng: String = ""
 ) {
 }

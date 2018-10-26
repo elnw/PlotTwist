@@ -1,34 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".viewcontrollers.fragments.WriteFragment">
-
-    <android.support.constraint.ConstraintLayout
+ <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".viewcontrollers.fragments.WriteFragment"
+        >
         <EditText
             android:id="@+id/titleTextView"
             android:layout_width="@dimen/medium_text_width"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:text="@string/title_text"/>
+            android:hint="@string/title_text"/>
+
+        <EditText
+            android:id="@+id/summaryTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/titleTextView"
+            android:hint="@string/summary_text"
+
+            />
+
         <EditText
             android:id="@+id/addressTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/address_text"
-            app:layout_constraintTop_toBottomOf="@id/titleTextView"
+            android:hint="@string/address_text"
+            app:layout_constraintTop_toBottomOf="@id/summaryTextView"
             />
         <EditText
             android:id="@+id/bodytextView"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             app:layout_constraintTop_toBottomOf="@id/addressTextView"
+            android:hint="@string/body_hint"
             />
         <Button
             android:id="@+id/createButtom"
@@ -36,7 +43,7 @@
             android:layout_height="@dimen/big_button_height"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/bodytextView"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:text="@string/Create"
             />
 
@@ -46,4 +53,3 @@
 
 
 
-</FrameLayout>

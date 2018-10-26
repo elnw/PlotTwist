@@ -6,7 +6,13 @@ import org.json.JSONObject
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
+import com.androidnetworking.interfaces.OkHttpResponseAndParsedRequestListener
+import com.androidnetworking.interfaces.OkHttpResponseListener
 import com.androidnetworking.interfaces.ParsedRequestListener
+import com.google.gson.reflect.TypeToken
+import okhttp3.Response
+import pe.edu.upc.plottwist.Models.Story
+import pe.edu.upc.plottwist.R
 
 
 class PlotTwistAPI {
@@ -18,20 +24,17 @@ class PlotTwistAPI {
         val signoutUrl = "$baseUrl/auth/sign_out"
         val registerUrl = "$baseUrl/auth"
 
-        fun createAccount(registerUser: User, responseHandler: (UserResponse?) -> Unit,
-                          errorHandler: (ANError?) -> Unit ){
+        fun createAccount(registerUser: User, confPassword: String, responseHandler: (UserResponse?) -> Unit,
+                          errorHandler: (ANError?) -> Unit) {
 
 
             AndroidNetworking.post(PlotTwistAPI.registerUrl)
                     .addBodyParameter("name", registerUser.name)
-                    .addBodyParameter("lastname", registerUser.lastname)
-                    .addBodyParameter("email", registerUser.mail)
-                    .addBodyParameter("username", registerUser.username)
+
+                    .addBodyParameter("email", registerUser.email)
+                    .addBodyParameter("nickname", registerUser.nickname)
                     .addBodyParameter("password", registerUser.password)
-                   .addBodyParameter("age", registerUser.age)
-                    .addBodyParameter("rol", registerUser.rol)
-                   .addBodyParameter("sex", registerUser.sex)
-                    .addBodyParameter("password_confirmation", registerUser.confPassword)
+                    .addBodyParameter("password_confirmation", confPassword)
                     .addBodyParameter("confirm_success_url", "www.google.com")
                     .setTag("PlotTwist")
                     .setPriority(Priority.MEDIUM)
@@ -45,32 +48,51 @@ class PlotTwistAPI {
                             errorHandler(error)
                         }
                     })
-}
-        fun loginAccount( email: String, password: String , responseHandler: (loginResponse?) -> Unit,
-                          errorHandler: (ANError?) -> Unit ){
+        }
+
+        fun loginAccount(email: String, password: String, responseHandler: (Response?, User?) -> Unit,
+                         errorHandler: (ANError?) -> Unit) {
+
+
+            val us = object : TypeToken<User>() {}
+
+
+            val ans = object : OkHttpResponseAndParsedRequestListener<User> {
+                override fun onResponse(okHttpResponse: Response?, response: User?) {
+                    responseHandler(okHttpResponse, response)
+                }
+
+                override fun onError(anError: ANError?) {
+                    errorHandler(anError)
+                }
+
+
+            }
 
             AndroidNetworking.post(PlotTwistAPI.signinUrl)
                     .addBodyParameter("email", email)
-                    .addBodyParameter("password",password)
+                    .addBodyParameter("password", password)
                     .setTag("PlotTwist")
-                    .setPriority(Priority.MEDIUM)
+                    .setPriority(Priority.LOW)
                     .build()
-                    .getAsObject(loginResponse::class.java, object : ParsedRequestListener<loginResponse> {
-                        override fun onResponse(response: loginResponse) {
-                            responseHandler(response)
-                        }
+                    .getAsOkHttpResponseAndParsed(us, ans)
 
-                        override fun onError(error: ANError) {
-                            errorHandler(error)
-                        }
-                    })
+            /*.getAsObject(loginResponse::class.java, object : ParsedRequestListener<loginResponse> {
+                override fun onResponse(response: loginResponse) {
+                    responseHandler(response)
+                }
 
+                override fun onError(error: ANError) {
+                    errorHandler(error)
+                }
+            })*/
 
+            // return logAnswer.header!!
 
 
         }
 
-        fun getStories( token: String, responseHandler: (StoryResponse?) -> Unit,
+        /* fun getStories( token: String, responseHandler: (StoryResponse?) -> Unit,
                         errorHandler: (ANError?) -> Unit ){
 
             AndroidNetworking.get(PlotTwistAPI.storyUrl)
@@ -89,12 +111,12 @@ class PlotTwistAPI {
                     })
 
 
-        }
+        }*/
 
-        fun getSheets(token:String,responseHandler: (SheetResponse?) -> Unit,
-        errorHandler: (ANError?) -> Unit ){
+        fun getSheets(token: String, responseHandler: (SheetResponse?) -> Unit,
+                      errorHandler: (ANError?) -> Unit) {
             AndroidNetworking.get(PlotTwistAPI.sheetsUrl)
-                    .addQueryParameter("access-token",token)
+                    .addQueryParameter("access-token", token)
                     .setTag("PlotTwist")
                     .setPriority(Priority.LOW)
                     .build()
@@ -109,16 +131,61 @@ class PlotTwistAPI {
                     })
         }
 
-        fun createStory( token:String){
+        fun createStory(token: String, client: String, uid: String, expiry: String,  title: String, address: String, body: String, sumary: String, geoCoderToken: String, userid:String,
+                        responseHandler: (CreateStoryResponse?) -> Unit,
+                        errorHandler: (ANError?) -> Unit) {
+
+            val requestedLocation = GeocoderAPI.requestLatLng(address,"AIzaSyDPDG4oYjgupXv_cRXmpaePI7YQtDVKtX0")// geoCoderToken)
+
 
             AndroidNetworking.post(PlotTwistAPI.storyUrl)
+                    .addBodyParameter("title", title)
+                    .addBodyParameter("summary", sumary)
+                    .addBodyParameter("body", body)
+                    .addBodyParameter("latitude", requestedLocation!!.location.lat)
+                    .addBodyParameter("longitude", requestedLocation.location.lng)
+                    .addBodyParameter("userid", userid)
+                    .addHeaders("access-token",token)
+                    .addHeaders("client",client)
+                    .addHeaders("uid",uid)
+                    .addHeaders("expiry",expiry)
+                    .setTag("PlotTwist")
+                    .setPriority(Priority.MEDIUM)
+                    .build()
+                    .getAsObject(CreateStoryResponse::class.java, object : ParsedRequestListener<CreateStoryResponse> {
+                        override fun onResponse(response: CreateStoryResponse) {
+                            responseHandler(response)
+                        }
 
+                        override fun onError(error: ANError) {
+                            errorHandler(error)
+                        }
+                    })
 
 
         }
 
+        fun getStories(token: String, client: String, uid: String, expiry: String, responseHandler: (StoryResponse?) -> Unit,
+                       errorHandler: (ANError?) -> Unit) {
+
+            AndroidNetworking.get(PlotTwistAPI.storyUrl)
+                    .addHeaders("access-token", token)
+                    .addHeaders("client", client)
+                    .addHeaders("uid", uid)
+                    .addHeaders("expiry", expiry)
+                    .setTag("PlotTwist")
+                    .build()
+                    .getAsObject(StoryResponse::class.java, object : ParsedRequestListener<StoryResponse> {
+                        override fun onResponse(response: StoryResponse) {
+                            responseHandler(response)
+                        }
+
+                        override fun onError(error: ANError) {
+                            errorHandler(error)
+                        }
+                    })
 
 
-
+        }
     }
 }

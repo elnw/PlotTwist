@@ -1,16 +1,13 @@
 package pe.edu.upc.plottwist.Models
 
-data class User (
+import android.provider.ContactsContract
 
+data class User (
+    val id: String,
      val name: String,
-    val lastname: String,
-    val mail:String,
-    val username:String,
-    val password:String,
-    val confPassword:String,
-    val age: String,
-    val rol: String,
-    val sex: String
+    val email:String,
+    val nickname: String,
+    val password: String
 ){
 
 }

@@ -19,6 +19,7 @@
     <string name="body_text"> Cuerpo</string>
     <string name="address_text">Dirección</string>
     <string name="Create">Crear</string>
+    <string name="summary_text">Resumen</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -40,8 +41,16 @@
     <string name="rol_writer">esc</string>
     <string name="rol_reader">rea</string>
     <string name="rol_bussiness">bus</string>
+    <string name="mock_text">deberia haber algo aqui pero no hay </string>
+
+    <string name="success_publish">Su historia se publicó correctamente. ¡Yey! </string>
+    <string name="failure_action">Yikes, algo salió mal. </string>
+    <string name="succesful_signup">Su cuenta fue creada satistactoriamente</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="body_hint">ingrese su historia</string>
+    <string name="error_text">Ocurrió un error al procesar su petición</string>
+
 
 </resources>

@@ -11,7 +11,7 @@ import pe.edu.upc.plottwist.Models.Story
 import pe.edu.upc.plottwist.R
 
 class
-    StoriesAdapter(var stories: ArrayList<Story>, val context: Context):
+StoriesAdapter(var stories: ArrayList<Story>, val context: Context):
         RecyclerView.Adapter<StoriesAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater
@@ -24,8 +24,8 @@ class
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val article = stories.get(position)
-        holder.updateFrom(article)
+        val story = stories.get(position)
+        holder.updateFrom(story)
     }
 
 
@@ -38,12 +38,12 @@ class
         fun updateFrom(story: Story) {
             titleTextView.text = story.title
             summaryTextView.text = story.summary
-           /* storyLayout.setOnClickListener { view ->
-                val context = view.context
-                context.startActivity(
-                        Intent(context, ArticleActivity::class.java)
-                                .putExtras(article.toBundle()))
-            }*/
+            /* storyLayout.setOnClickListener { view ->
+                 val context = view.context
+                 context.startActivity(
+                         Intent(context, ArticleActivity::class.java)
+                                 .putExtras(article.toBundle()))
+             }*/
         }
     }
 

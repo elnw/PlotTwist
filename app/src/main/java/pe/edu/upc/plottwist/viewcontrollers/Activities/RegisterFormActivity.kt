@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.androidnetworking.error.ANError
 import kotlinx.android.synthetic.main.activity_register_form.*
 import pe.edu.upc.plottwist.Models.User
@@ -22,12 +23,12 @@ class RegisterFormActivity : AppCompatActivity() {
 
 
         registerButton.setOnClickListener{view->
-            val userRegistered = User( nameTextInput.text.toString(), lastNameTextInput.text.toString(),emailTextInput.text.toString(), UserTextInput.text.toString(),
-                    PasswordTextInput.text.toString(), ConfPasswordTextInput.text.toString(),ageInput.text.toString(), intent.extras.getString("rol"), sexTextInput.text.substring(0,1)
+            val userRegistered = User( "0",nameTextInput.text.toString() + " " + lastNameTextInput.text.toString(),emailTextInput.text.toString(), UserTextInput.text.toString(),
+                    PasswordTextInput.text.toString()
 
             )
-            PlotTwistAPI.createAccount(userRegistered, {
-                response -> handleResponse(response)},
+            PlotTwistAPI.createAccount(userRegistered, ConfPasswordTextInput.text.toString(),
+                    { response -> handleResponse(response)},
                     { error -> handleError(error) })
 
         }
@@ -37,16 +38,18 @@ class RegisterFormActivity : AppCompatActivity() {
 
     private fun handleResponse(response: UserResponse?) {
         if ("error".equals(response!!.status, true)) {
+            Toast.makeText(this, getString(R.string.failure_action) , Toast.LENGTH_LONG).show()
             Log.d("CatchUp", "Error: ${response.message}")
             return
         }
-
+        Toast.makeText(this, getString(R.string.succesful_signup) , Toast.LENGTH_LONG).show()
         startActivity(Intent( this , MainActivity::class.java))
 
 
     }
 
     private fun handleError(anError: ANError?) {
+        Toast.makeText(this, getString(R.string.failure_action) , Toast.LENGTH_LONG).show()
         startActivity(Intent( this , RegisterActivity::class.java))
     }
 
